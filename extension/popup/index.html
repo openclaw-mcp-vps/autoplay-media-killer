@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autoplay Media Killer</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        width: 340px;
+        margin: 0;
+        font-family: "Segoe UI", "Inter", sans-serif;
+        background: #0d1117;
+        color: #e6edf3;
+      }
+      .wrap {
+        padding: 14px;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 15px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #67e8f9;
+      }
+      .card {
+        border: 1px solid #30363d;
+        border-radius: 10px;
+        background: #161b22;
+        padding: 12px;
+        margin-top: 10px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 6px 0;
+        font-size: 13px;
+      }
+      .domain {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        word-break: break-all;
+      }
+      button {
+        border: 1px solid #374151;
+        background: #0f172a;
+        color: #e2e8f0;
+        border-radius: 8px;
+        padding: 7px 10px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      button.primary {
+        background: #22d3ee;
+        color: #0b0f16;
+        border-color: #22d3ee;
+        font-weight: 700;
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .muted {
+        color: #9ca3af;
+        font-size: 12px;
+      }
+      .status {
+        margin-top: 8px;
+        font-size: 12px;
+        color: #cbd5e1;
+      }
+      .actions {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      input[type="checkbox"] {
+        accent-color: #22d3ee;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Autoplay Media Killer</h1>
+      <p class="muted">Block autoplay instantly on the current site.</p>
+
+      <div class="card">
+        <div class="row">
+          <span>Current domain</span>
+          <strong class="domain" id="current-domain">n/a</strong>
+        </div>
+        <div class="row">
+          <span>Whitelist status</span>
+          <button id="toggle-domain"></button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <label>
+            <input id="block-video" type="checkbox" />
+            Block video autoplay
+          </label>
+        </div>
+        <div class="row">
+          <label>
+            <input id="block-audio" type="checkbox" />
+            Block audio autoplay
+          </label>
+        </div>
+        <div class="row">
+          <label>
+            <input id="block-iframe" type="checkbox" />
+            Block iframe autoplay
+          </label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="sync-now" class="primary">Sync now</button>
+        <button id="open-options">Options</button>
+      </div>
+
+      <div id="status" class="status"></div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

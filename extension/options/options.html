@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autoplay Media Killer Options</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "Inter", sans-serif;
+        background: #0d1117;
+        color: #e6edf3;
+      }
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 18px 44px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 28px;
+      }
+      p {
+        color: #9ca3af;
+      }
+      section {
+        border: 1px solid #30363d;
+        border-radius: 14px;
+        background: #161b22;
+        padding: 16px;
+        margin-top: 16px;
+      }
+      h2 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+      .grid {
+        display: grid;
+        gap: 10px;
+      }
+      .grid.two {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+      label {
+        display: grid;
+        gap: 6px;
+        font-size: 13px;
+      }
+      input,
+      textarea {
+        border: 1px solid #374151;
+        background: #0f172a;
+        color: #e2e8f0;
+        border-radius: 8px;
+        padding: 9px 10px;
+        font-size: 13px;
+      }
+      textarea {
+        min-height: 140px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+      button {
+        border: 1px solid #374151;
+        background: #0f172a;
+        color: #e2e8f0;
+        border-radius: 8px;
+        padding: 9px 12px;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      button.primary {
+        background: #22d3ee;
+        color: #0b0f16;
+        border-color: #22d3ee;
+        font-weight: 700;
+      }
+      .checks {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 10px;
+      }
+      .check {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid #374151;
+        border-radius: 8px;
+        padding: 8px 10px;
+      }
+      .check input {
+        accent-color: #22d3ee;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      #status {
+        margin-top: 12px;
+        border: 1px solid #374151;
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 13px;
+        color: #cbd5e1;
+      }
+      .hint {
+        font-size: 12px;
+        color: #9ca3af;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Autoplay Media Killer Settings</h1>
+      <p>
+        Connect your paid dashboard account to sync whitelist rules and autoplay
+        controls across devices.
+      </p>
+
+      <section>
+        <h2>Account Connection</h2>
+        <div class="grid two">
+          <label>
+            Dashboard base URL
+            <input id="api-base-url" placeholder="https://autoplay-media-killer.com" />
+          </label>
+          <label>
+            Account email
+            <input id="email" type="email" placeholder="you@example.com" />
+          </label>
+          <label>
+            Account password
+            <input id="password" type="password" placeholder="Your dashboard password" />
+          </label>
+          <label>
+            Extension token (optional manual override)
+            <input id="token" placeholder="ak_xxxxx" />
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="login" class="primary">Login and Pull Settings</button>
+          <button id="save-token">Save Token Only</button>
+          <button id="logout">Disconnect</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Blocking Rules</h2>
+        <div class="checks">
+          <label class="check">
+            <input id="block-video" type="checkbox" />
+            Block video autoplay
+          </label>
+          <label class="check">
+            <input id="block-audio" type="checkbox" />
+            Block audio autoplay
+          </label>
+          <label class="check">
+            <input id="block-iframe" type="checkbox" />
+            Block iframe autoplay
+          </label>
+          <label class="check">
+            <input id="aggressive" type="checkbox" />
+            Intercept script-driven play()
+          </label>
+        </div>
+
+        <label style="margin-top: 12px; display: grid; gap: 6px;">
+          Whitelist domains (one per line)
+          <textarea id="whitelist" placeholder="example.com&#10;*.trustedmedia.com"></textarea>
+        </label>
+        <p class="hint">Domains in this list are allowed to autoplay.</p>
+
+        <div class="actions">
+          <button id="save-local">Save Local Settings</button>
+          <button id="pull-sync">Pull From Dashboard</button>
+          <button id="push-sync" class="primary">Push To Dashboard</button>
+        </div>
+      </section>
+
+      <div id="status">Ready.</div>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>
